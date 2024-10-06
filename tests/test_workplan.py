@@ -1,14 +1,15 @@
+from status import status
 from workplan.entry import Entry
 from workplan.workplan import WorkPlan
 
 def test_print_dev_completed_ongoing():
     wp = WorkPlan()
     wp.add_entries([
-        Entry('AC Installation', 'Purchase - #AC-123', 'Dev Completed', '2020-01-01', 'John Doe'),
-        Entry('House Cleaning', 'Wash curtains - #HS-566', 'Dev Completed', '2020-01-01', 'John Doe'),
-        Entry('Sound Proofing', 'Measure area - #SP-233', 'Waiting for QA', '2020-03-06', 'John Doe'),
-        Entry('Bathroom', 'Install shower - #BR-754', 'Completed', '2020-03-06', 'John Doe'),
-        Entry('AC Installation', 'Install - #AC-124', 'Ongoing', '2020-03-05', 'John Doe'),
+        Entry('AC Installation', 'Purchase - #AC-123', status.Status.DEV_COMPLETED, '2020-01-01', 'John Doe'),
+        Entry('House Cleaning', 'Wash curtains - #HS-566', status.Status.DEV_COMPLETED, '2020-01-01', 'John Doe'),
+        Entry('Sound Proofing', 'Measure area - #SP-233', status.Status.WAITING_FOR_QA, '2020-03-06', 'John Doe'),
+        Entry('Bathroom', 'Install shower - #BR-754', status.Status.COMPLETED, '2020-03-06', 'John Doe'),
+        Entry('AC Installation', 'Install - #AC-124', status.Status.ONGOING, '2020-03-05', 'John Doe'),
     ])
     expected = (
         '\n\nDev Completed'
@@ -24,9 +25,9 @@ def test_print_dev_completed_ongoing():
 def test_print_ongoing():
     wp = WorkPlan()
     wp.add_entries([
-        Entry('AC Installation', 'Purchase - #AC-123', 'Ongoing', '2020-01-01', 'John Doe'),
-        Entry('House Cleaning', 'Wash curtains - #HS-566', 'Ongoing', '2020-02-04', 'John Doe'),
-        Entry('AC Installation', 'Install - #AC-124', 'Ongoing', '2020-03-05', 'John Doe'),
+        Entry('AC Installation', 'Purchase - #AC-123', status.Status.ONGOING, '2020-01-01', 'John Doe'),
+        Entry('House Cleaning', 'Wash curtains - #HS-566', status.Status.ONGOING, '2020-02-04', 'John Doe'),
+        Entry('AC Installation', 'Install - #AC-124', status.Status.ONGOING, '2020-03-05', 'John Doe'),
     ])
     expected = (
         '\n\nOngoing'
@@ -39,9 +40,9 @@ def test_print_ongoing():
 def test_print_pending_upcoming():
     wp = WorkPlan()
     wp.add_entries([
-        Entry('AC Installation', 'Purchase - #AC-123', 'Pending', '2020-01-01', 'John Doe'),
-        Entry('House Cleaning', 'Wash curtains - #HS-566', 'Moved to next sprint', '2020-01-01', 'John Doe'),
-        Entry('AC Installation', 'Install - #AC-124', 'Moved to next sprint', '2020-03-05', 'John Doe'),
+        Entry('AC Installation', 'Purchase - #AC-123', status.Status.PENDING, '2020-01-01', 'John Doe'),
+        Entry('House Cleaning', 'Wash curtains - #HS-566', status.Status.MOVED_TO_NEXT_SPRINT, '2020-01-01', 'John Doe'),
+        Entry('AC Installation', 'Install - #AC-124', status.Status.MOVED_TO_NEXT_SPRINT, '2020-03-05', 'John Doe'),
     ])
     expected = (
         '\n\nUpcoming'
