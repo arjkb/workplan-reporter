@@ -150,7 +150,7 @@ def test_subtraction_same_dev_completed_last_week_with_additional_ongoing():
     ])
 
     expected = (
-        '\n\nnOngoing'
+        '\n\nOngoing'
         '\nAC Installation - Install - #AC-124 (ECD: 2020-03-05)'
     )
     actual = wp_curr - wp_prev
@@ -172,7 +172,7 @@ def test_subtraction_same_dev_completed_last_week_with_additional_dev_compeleted
     expected = (
         '\n\nDev Completed'
         '\nHouse Cleaning - Wash curtains - #HS-566'
-        '\n\nnOngoing'
+        '\n\nOngoing'
         '\nAC Installation - Install - #AC-124 (ECD: 2020-03-05)'
     )
     actual = wp_curr - wp_prev
@@ -193,9 +193,9 @@ def test_subtraction_ongoing_last_week_with_different_entries_this_week():
 
     expected = (
         '\n\nDev Completed'
-        '\nAC Installation - Purchase - #AC-123'
         '\nHouse Cleaning - Wash curtains - #HS-566'
-        '\n\nnOngoing'
+        '\nAC Installation - Purchase - #AC-123'
+        '\n\nOngoing'
         '\nAC Installation - Install - #AC-124 (ECD: 2020-03-05)'
     )
     actual = wp_curr - wp_prev
@@ -217,9 +217,9 @@ def test_subtraction_dev_completed_and_ongoing_last_week_with_different_entries_
 
     expected = (
         '\n\nDev Completed'
-        '\nSound Proofing - Measure area - #SP-233'
         '\nHouse Cleaning - Wash curtains - #HS-566'
-        '\n\nnOngoing'
+        '\nSound Proofing - Measure area - #SP-233'
+        '\n\nOngoing'
         '\nAC Installation - Install - #AC-124 (ECD: 2020-03-05)'
     )
     actual = wp_curr - wp_prev
