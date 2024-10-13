@@ -52,6 +52,17 @@ def test_print_pending_upcoming():
     )
     assert f"{wp}" == expected
 
+def test_add_entry():
+    wp = WorkPlan()
+    wp.add_entry(
+        Entry('AC Installation', 'Purchase - #AC-123', status.Status.PENDING, '2020-01-01', 'John Doe'),
+    )
+    expected = (
+        '\n\nUpcoming'
+        '\nAC Installation - Purchase - #AC-123'
+    )
+    assert f"{wp}" == expected
+
 def test_print_none():
     wp = WorkPlan()
     expected = ""
