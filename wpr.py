@@ -31,11 +31,6 @@ def generate_workplan_from_csv(csvfilename: str) -> workplan.WorkPlan:
     return wp
 
 def main():
-    # read URL from config
-    with open('url.txt', 'r') as f:
-        url = f.readline()
-
-    # determine filenames
     DATE_FORMAT = '%Y%m%d'
     today = datetime.date.today()
     today_date_suffix = today.strftime(DATE_FORMAT)
@@ -43,6 +38,10 @@ def main():
     curr_week_fname = f"inputs/sprint_{today_date_suffix}.csv"
     prev_week_fname = f"inputs/sprint_{(today - datetime.timedelta(weeks=1)).strftime(DATE_FORMAT)}.csv"
     output_fname = f"outputs/sprint_report_{today_date_suffix}.csv"
+
+    # read URL from config
+    with open('url.txt', 'r') as f:
+        url = f.readline()
 
     # fetch the file from the URL and save it to the appropriate location
     open(curr_week_fname, 'wb').write(requests.get(url).content)
@@ -65,6 +64,7 @@ def main():
     )
 
     print(output_text)
+
     open(output_fname, 'w').write(output_text)
 
     # copy to clipboard
