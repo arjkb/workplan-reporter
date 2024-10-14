@@ -5,6 +5,7 @@ import csv
 import datetime
 import os
 import requests
+import subprocess
 import sys
 
 from status import status
@@ -65,6 +66,9 @@ def main():
 
     print(output_text)
     open(output_fname, 'w').write(output_text)
+
+    # copy to clipboard
+    subprocess.run('pbcopy', text=True, input=output_text)
 
 if __name__ == '__main__':
     main()
